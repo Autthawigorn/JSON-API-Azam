@@ -38,6 +38,15 @@ struct RegistrationScreen: View {
                 
                 Spacer().frame(height: 20)
                 
+                PrimaryButton(
+                    title: "Dummy",
+                    action: {print("Dummy")},
+                    backgroundColor: .red
+                )
+                .padding(.horizontal)
+                
+                Spacer().frame(height: 20)
+                
                 FooterText()
                 
                 Spacer()

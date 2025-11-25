@@ -9,50 +9,52 @@ import SwiftUI
 
 struct RegistrationScreen: View {
     
-    @State private var name: String = ""
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var showPassword: Bool = false
+    @State private var name = ""
+    @State private var email = ""
+    @State private var password = ""
+    @State private var showPassword = false
     
     var body: some View {
+        
         ZStack {
-            Color(.systemGray6)
-                .ignoresSafeArea()
+            Color(.systemGray6).ignoresSafeArea()
             
-            VStack(alignment: .leading, spacing: 0) {
-                
-                BackgroundText()
-                
-                Spacer().frame(height: 20)
-                
-                TitleText()
-                
-                Spacer().frame(height: 40)
-                
-                FormFields(email: $email, password: $password, showPassword: $showPassword)
-                
-                
-                Spacer().frame(height: 30)
-                
-                SignInButton()
-                
-                Spacer().frame(height: 20)
-                
-                PrimaryButton(
-                    title: "Dummy",
-                    action: {print("Dummy")},
-                    backgroundColor: .red
-                )
-                .padding(.horizontal)
-                
-                Spacer().frame(height: 20)
-                
-                FooterText()
-                
-                Spacer()
+            ScrollView {
+                VStack(spacing: 0) {
+                    
+                    // FULL BLEED TOP SECTION
+                    BackgroundText()
+                        .background(
+                            // This extends the red background up into the overscroll area
+                            Color.red
+                                .frame(height: 600)   // amount of overscroll space
+                                .offset(y: -300)
+                        )
+                    
+                    // NORMAL CONTENT SECTION
+                    VStack(alignment: .leading, spacing: 24) {
+                        
+                        TitleText()
+                        
+                        FormFields(email: $email,
+                                   password: $password,
+                                   showPassword: $showPassword)
+                        
+                        SignInButton()
+                        
+                        FooterText()
+                        
+                        Spacer(minLength: 0)
+                        
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 32)
+                }
             }
-            //.padding(.horizontal)
         }
+        .background(.red)
+        .ignoresSafeArea(edges:.top)
+       
     }
 }
 

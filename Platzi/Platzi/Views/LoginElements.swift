@@ -19,7 +19,9 @@ struct BackgroundText: View {
                 .padding(.horizontal)
             
         }
+        .frame(height: 200)
         .hSpacing()
+        //.vSpacing()
         .background(.red)
     }
 }
